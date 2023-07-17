@@ -1,0 +1,60 @@
+<form action="" class="form" #form>
+  <div>
+    <label for="nome" class="text-input"
+      >Nome <input type="text" name="name" id="name" [(ngModel)]="user.name" />
+      <img
+        src="../../../../assets/icones/84380.png"
+        alt=""
+        width="20px"
+        (click)="getUsersByName(user.name)"
+    /></label>
+
+    <label for="email" class="text-input"
+      >Email
+      <input type="text" name="email" id="email" [(ngModel)]="user.email"
+    /></label>
+
+    <label for="permissoes" class="text-input" *ngIf="edit"
+      >Permissões
+      <input
+        type="text"
+        name="permissoes"
+        id="permissoes"
+        [(ngModel)]="user.roles"
+      />
+    </label>
+    <button type="button">Editar</button>
+  </div>
+  <div>
+    <div *ngIf="!edit" class="checkbox-container">
+      <label for="admin">
+        <input
+          type="radio"
+          id="roles"
+          name="roles"
+          value="admin"
+          [(ngModel)]="user.roles"
+        />Admin</label
+      >
+
+      <label for="user">
+        <input
+          type="radio"
+          id="roles"
+          name="roles"
+          value="user"
+          [(ngModel)]="user.roles"
+        />User</label
+      >
+    </div>
+
+    <button
+      type="button"
+      *ngIf="!edit"
+      [disabled]="user.name == null || user.email == null"
+    >
+      Salvar
+    </button>
+    <button type="button" *ngIf="edit" (click)="cancela()"> Cancelar</button>
+  </div>
+</form>

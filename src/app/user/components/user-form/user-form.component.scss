@@ -1,0 +1,47 @@
+.form{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    min-width: 700px;
+    background-color: azure;
+    padding: 10px;
+    border-radius: 10px;
+}
+.text-input{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+}
+
+button {
+    cursor: pointer;
+    background: #4ab3c6;
+    padding: 8px;
+    color: #fff;
+    font-size: 20px;
+    border: 1px solid #fff;
+    text-shadow: 0 1px 1px #333;
+    border-radius: 5px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+button:disabled {
+    background: grey;
+    transform: none !important;
+}
+
+button:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.checkbox-container {
+    display: flex;
+    border: 1px solid black;
+    padding: 5px;
+    justify-content: space-evenly;
+    font-size: 20px;
+    width: 60%;
+  }

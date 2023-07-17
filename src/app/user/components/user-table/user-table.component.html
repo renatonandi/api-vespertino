@@ -1,0 +1,18 @@
+
+<table width="100%" class="container">
+    <tr>
+        <td>Nome</td>
+        <td>Email</td>
+        <td>Permissões</td>
+    </tr>
+    <tr *ngFor="let user of users; let i = index">
+        <td>{{user.name}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.roles}}</td>
+        <td>
+            <img src="../../../../assets/icones/editar.png" alt="editar" width="20px" (click)="editaUser(user, i)">
+            <img src="../../../../assets/icones/excluir.png" alt="excluir" width="20px">
+        </td>
+    </tr>
+
+</table>
