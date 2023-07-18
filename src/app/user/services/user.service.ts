@@ -25,11 +25,10 @@ export class UserService {
     return this.usersSbject.asObservable();
   }
 
-  public getUsersByName(name: string): Observable<User[]> {
+  public getUsersByName(name: string): void {
     this.http
       .get<User[]>(`${this.urlBase}/name/${name}`)
       .subscribe((users) => this.usersSbject.next(users));
-    return this.usersSbject.asObservable();
   }
 
   public userSelect(user: User, i: number) {
