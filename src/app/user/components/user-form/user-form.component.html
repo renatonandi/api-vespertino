@@ -1,38 +1,41 @@
 <form action="" class="form" #form>
+  <h1>Cadastro de Usuario</h1>
   <div>
     <label for="nome" class="text-input"
-      >Nome <input type="text" name="name" id="name" [(ngModel)]="user.name" />
-      <img
-        src="../../../../assets/icones/84380.png"
-        alt=""
-        width="20px"
-        (click)="getUsersByName(user.name)"
-    /></label>
+      >Nome
+      <div class="row">
+        <input type="text" name="name" id="name" [(ngModel)]="user.name" />
+        <button> <img
+          src="../../../../assets/icones/84380.png"
+          alt=""
+          width="20px"
+          (click)="getUsersByName()"
+        /></button>
+        </div
+    ></label>
 
     <label for="email" class="text-input"
       >Email
       <input type="text" name="email" id="email" [(ngModel)]="user.email"
     /></label>
 
-    <label for="permissoes" class="text-input" *ngIf="edit"
-      >Permissões
+    <label for="password" class="text-input"
+      >Senha
       <input
         type="text"
-        name="permissoes"
-        id="permissoes"
-        [(ngModel)]="user.roles"
-      />
-    </label>
-    <button type="button">Editar</button>
+        name="password"
+        id="password"
+        [(ngModel)]="user.password"
+    /></label>
   </div>
   <div>
-    <div *ngIf="!edit" class="checkbox-container">
+    <div class="checkbox-container">
       <label for="admin">
         <input
           type="radio"
           id="roles"
           name="roles"
-          value="admin"
+          value="ADMIN,USER"
           [(ngModel)]="user.roles"
         />Admin</label
       >
@@ -42,19 +45,27 @@
           type="radio"
           id="roles"
           name="roles"
-          value="user"
+          value="USER"
           [(ngModel)]="user.roles"
         />User</label
       >
     </div>
 
     <button
+    class="button"
       type="button"
-      *ngIf="!edit"
       [disabled]="user.name == null || user.email == null"
+      (click)="saveUser()"
     >
       Salvar
     </button>
-    <button type="button" *ngIf="edit" (click)="cancela()"> Cancelar</button>
+    <button
+    class="button"
+      type="button"
+      (click)="cancela()"
+      [disabled]="user.name == null || user.email == null"
+    >
+      Cancelar
+    </button>
   </div>
 </form>

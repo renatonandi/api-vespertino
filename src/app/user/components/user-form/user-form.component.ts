@@ -12,40 +12,37 @@ export class UserFormComponent implements OnInit {
 
   public users!: User[];
 
-  public edit: boolean = false;
+  public user = {} as User;
 
-  public index: number = -1;
 
-  public user: User = {
-    id: 0,
-    name: '',
-    email: '',
-    password: '',
-    roles: '',
-  };
 
   ngOnInit(): void {
     this.service.emitEvent.subscribe({
       next: (res: any) => {
         this.user = res[0];
-        this.index = res[1];
-        this.edit = true;
       },
     });
   }
   
-  public getUsersByName(name: string) {
-    this.service.getUsersByName(name);
+  public getUsersByName() {
+    this.service.getUsersByName(this.user.name).subscribe((data) => {
+      this.users = data;
+    })
   }
 
-  public cancela() {
-    this.user = {
-      id: 0,
-      name: '',
-      email: '',
-      password: '',
-      roles: '',
-    };
-    this.edit = false;
+  public cancela(){
+    this.user = {} as User;
+  }
+
+  public saveUser(){
+    if(this.user.id){
+      this.service.update(this.user).subscribe((data) => {
+        this.user = {} as User;
+      })
+    }else{
+      this.service.insert(this.user).subscribe((data) => {
+        this.user = {} as User;
+      })
+    }
   }
 }

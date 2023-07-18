@@ -19,8 +19,17 @@ export class UserTableComponent implements OnInit{
     });
   }
 
-  public editaUser(user:User, i: number){
-    this.service.userSelect(user, i);
+  public editaUser(user:User){
+    let newUser = {...user}
+    this.service.userSelect(newUser);
+  }
+
+  public delete(user: User){
+    this.service.delete(user).subscribe(() => {
+      this.service.listAll().subscribe((data) => {
+        this.users = data;
+      })
+    })
   }
 
  

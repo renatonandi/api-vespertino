@@ -8,11 +8,11 @@ import { HomeModule } from './home/home.module';
 import { MenuModule } from './menu/menu.module';
 import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CountryModule } from './country/country.module';
+import { SpeedwayModule } from './speedway/speedway.module';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -20,10 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     HomeModule,
     MenuModule,
-    UserModule
-
+    UserModule,
+    CountryModule,
+    SpeedwayModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

@@ -1,0 +1,17 @@
+<form action="" class="form" #form>
+  <h1>Cadastro de País</h1>
+  <div>
+    <label for="nome" class="text-input"
+      >Nome
+      <div class="row">
+        <input type="text" name="name" id="name" [(ngModel)]="country.name"/>
+        <button>
+          <img src="../../../../assets/icones/c78e77f026b897cae629e7003897143b.png" alt="" width="20px" (click)="getCountryByName()"/>
+        </button></div
+    ></label>
+  </div>
+  <div>
+    <button class="button" type="button" (click)="saveCountry()">Salvar</button>
+    <button class="button" type="button" (click)="cancela()">Cancelar</button>
+  </div>
+</form>

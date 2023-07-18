@@ -1,0 +1,65 @@
+.linkSelected {
+    font-weight: bold;
+    text-align: left;
+}
+
+a:link,
+a:visited {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin: 5px;
+    padding: 2px;
+}
+
+a:hover,
+a:active {
+    background-color: #00ddff;
+    transform: scale(1.05);
+    border-radius: 3px;
+}
+
+#menu-lateral {
+    position: fixed;
+    width: 150px;
+    height: 550px;
+    background: #001458;
+    border-radius: 0px 20px 20px 0px;
+    left: -150px;
+    transition: 0.5s;
+}
+
+.titulo {
+    text-align: center;
+    color: white;
+    margin-top: 5px;
+}
+
+input:checked~#menu-lateral {
+    left: 0px;
+    transition: 0.5s;
+}
+
+input:checked {
+    margin-left: 150px;
+    transition: 0.5s;
+}
+
+.checkbox {
+    margin-top: 10px;
+    width: 25px;
+    height: 35px;
+    appearance: none;
+    border-radius: 0px 20px 20px 0px;
+    background-color: #001458;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.checkbox:checked {
+    border-radius: 20px 0px 0px 20px;
+}
+
+ul {
+    list-style: none;
+}
