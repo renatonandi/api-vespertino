@@ -19,7 +19,7 @@ export class SpeedwayTableComponent implements OnInit{
     });
   }
 
-  public editaUser(speedway:Speedway){
+  public editaSpeedway(speedway:Speedway){
     let newSpeedway = {...speedway}
     this.service.speedwaySelect(newSpeedway);
   }

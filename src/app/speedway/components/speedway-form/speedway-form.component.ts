@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SpeedwayService } from '../../services/speedway.service';
 import { Speedway } from '../../models/speedway';
+import { Country } from 'src/app/country/models/country';
+import { CountryService } from 'src/app/country/services/country.service';
 
 @Component({
   selector: 'app-speedway-form',
@@ -8,7 +10,9 @@ import { Speedway } from '../../models/speedway';
   styleUrls: ['./speedway-form.component.scss']
 })
 export class SpeedwayFormComponent implements OnInit{
-  constructor(private service: SpeedwayService) {}
+  constructor(private service: SpeedwayService, private countryService: CountryService) {}
+
+  public countries!: Country[];
 
   public speedways!: Speedway[];
 
@@ -21,7 +25,10 @@ export class SpeedwayFormComponent implements OnInit{
       next: (res: any) => {
         this.speedway = res[0];
       },
-    });
+    })
+    this.countryService.listAll().subscribe((data) => {
+      this.countries = data;
+    })
   }
   
   public getSpeedwayByName() {

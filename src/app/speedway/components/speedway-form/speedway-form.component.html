@@ -1,50 +1,29 @@
 <form action="" class="form" #form>
-    <h1>Cadastro de Pistas</h1>
-    <div>
-      <label for="nome" class="text-input"
-        >Nome
-        <div class="row">
-          <input type="text" name="name" id="name" [(ngModel)]="speedway.name"/>
-          <button> <img
-            src="../../../../assets/icones/84380.png"
-            alt=""
-            width="20px"
-            (click)="getSpeedwayByName()"
-          /></button>
-          </div
-      ></label>
-  
-      <label for="size" class="text-input"
-        >Tamanho
-        <input type="text" name="email" id="email" [(ngModel)]="speedway.size"
-      /></label>
+  <h1>Cadastro de Pistas</h1>
+  <div>
+    <label for="nome" class="text-input">Nome
+      <div class="row">
+        <input type="text" name="name" id="name" [(ngModel)]="speedway.name" />
+        <button> <img src="../../../../assets/icones/84380.png" alt="" width="20px"
+            (click)="getSpeedwayByName()" /></button>
+      </div>
+    </label>
 
-        
+    <label for="size" class="text-input">Tamanho
+      <input type="text" name="email" id="email" [(ngModel)]="speedway.size" /></label>
   
-      <label for="country" class="text-input"
-        >País
-        <input
-          type="text"
-          name="country"
-          id="country"
-          [(ngModel)]="speedway.country"
-      /></label>
-
-    </div>
-    <div>
-      <button
-      class="button"
-        type="button"
-        (click)="saveSpeedway()"
-      >
-        Salvar
-      </button>
-      <button
-      class="button"
-        type="button"
-        (click)="cancela()"
-      >
-        Cancelar
-      </button>
-    </div>
-  </form>
+      <select name="country" id="country">
+      <option value="" selected disabled>Países</option>
+      <option *ngFor="let country of countries" [value]="country.id" name="country" [(ngModel)]="speedway.country">{{country.name}}</option>
+    </select>
+  
+  </div>
+  <div>
+    <button class="button" type="button" (click)="saveSpeedway()">
+      Salvar
+    </button>
+    <button class="button" type="button" (click)="cancela()">
+      Cancelar
+    </button>
+  </div>
+</form>
