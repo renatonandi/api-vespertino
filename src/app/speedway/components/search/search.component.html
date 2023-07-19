@@ -1,0 +1,31 @@
+<form action="" class="form" #form>
+  <div>
+    <label for="nome" class="text-input"
+      >Nome
+      <input type="text" name="name" id="name" [(ngModel)]="speedway.name" (keyup)="getSpeedwayByName()" />
+    </label>
+
+    <label for="size" class="text-input"
+      >Tamanho
+      <div class="row">
+        <input type="text" name="size-beggin" id="size-beggin" /> /
+        <input type="text" name="size-end" id="size-end" />
+      </div>
+    </label>
+
+    <label for="country">Países</label>
+
+    <select name="country" id="country" (change)="getSpeedwayByCountry(speedway.country)" [(ngModel)]="speedway.country">
+      <option value="" selected disabled [ngValue]="">Países</option>
+      <option *ngFor="let country of countries" [ngValue]="country">
+        {{ country.name }}
+      </option>
+    </select>
+    
+  </div>
+  <div>
+    <button class="button" type="button" (click)="cancela()">Cancelar</button>
+
+    <div></div>
+  </div>
+</form>

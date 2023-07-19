@@ -1,20 +1,19 @@
-
-<table width="100%" [cellPadding]="0" [cellSpacing]="0" class="form">
-    <tr>
-        <td>Nome</td>
-        <td>Tamanho</td>
-        <td>País</td>
-    </tr>
-    <tr *ngFor="let speedway of speedways">
-        <td>{{speedway.name}}</td>
-        <td>{{speedway.size}}</td>
-        <td>{{speedway.country.name}}</td>
-        <td class="buttons">
-            <button> <img src="../../../../assets/icones/editar.png" alt="editar" width="20px" (click)="editaSpeedway(speedway)"></button>
-            <button> <img src="../../../../assets/icones/excluir.png" alt="excluir" width="20px" (click)="delete(speedway)"></button>
-           
-            
-        </td>
-    </tr>
-
-</table>
+<section class="form">
+    <table width="100%" [cellPadding]="0" [cellSpacing]="0">
+        <tr>
+            <td>Nome</td>
+            <td>Tamanho</td>
+            <td>País</td>
+        </tr>
+        <tr *ngFor="let speedway of speedways">
+            <td>{{speedway.name}}</td>
+            <td>{{speedway.size}}</td>
+            <td>{{speedway.country.name}}</td>
+            <td class="buttons">
+                <button> <img src="../../../../assets/icones/editar.png" alt="editar" width="20px" (click)="editaSpeedway(speedway)"></button>
+                <button> <img src="../../../../assets/icones/excluir.png" alt="excluir" width="20px" (click)="delete(speedway)"></button>
+            </td>
+        </tr>
+    
+    </table>
+</section>

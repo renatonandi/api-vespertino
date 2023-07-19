@@ -1,18 +1,17 @@
 .form {
     display: flex;
     flex-direction: column;
-    margin-top: 30px;
+    margin-top: 50px;
     background-color: rgb(140, 140, 236);
     padding: 10px;
     border-radius: 10px;
-    margin-bottom: 10px;
 }
 
 .row {
     display: flex;
 
     input {
-        width: 100%;
+        width: 40%;
     }
     
     button{

@@ -16,19 +16,31 @@ export class SpeedwayFormComponent implements OnInit{
 
   public speedways!: Speedway[];
 
+  public country = {} as Country;
+
   public speedway = {} as Speedway;
 
+  public cancel: boolean = false;
 
+  public buttonCancel(){
+    if (this.speedway.name == '' || this.speedway.size == null) {
+      return true
+    }
+    return false
+  }
 
   ngOnInit(): void {
-    this.service.emitEvent.subscribe({
-      next: (res: any) => {
-        this.speedway = res[0];
-      },
-    })
+    
     this.countryService.listAll().subscribe((data) => {
       this.countries = data;
-    })
+    });
+
+    this.service.emitEvent.subscribe({
+      next: (res: any) => {
+        this.speedway = res;
+
+      },
+    });
   }
   
   public getSpeedwayByName() {

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SpeedwayService } from '../../services/speedway.service';
 import { Speedway } from '../../models/speedway';
+import { Country } from 'src/app/country/models/country';
 
 @Component({
   selector: 'app-speedway-table',
@@ -9,6 +10,8 @@ import { Speedway } from '../../models/speedway';
 })
 export class SpeedwayTableComponent implements OnInit{
   constructor(private service: SpeedwayService) { }
+
+  public country!: Country[];
   
   public speedways!: Speedway[];
 
@@ -20,8 +23,14 @@ export class SpeedwayTableComponent implements OnInit{
   }
 
   public editaSpeedway(speedway:Speedway){
-    let newSpeedway = {...speedway}
-    this.service.speedwaySelect(newSpeedway);
+    let speedwayCountry = {
+      id: speedway.id,
+      name: speedway.name,
+      size: speedway.size,
+      country: speedway.country
+    }
+
+    this.service.speedwaySelect(speedwayCountry);
   }
 
   public delete(speedway: Speedway){
