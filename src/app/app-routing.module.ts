@@ -7,11 +7,11 @@ import { SpeedwayComponent } from './speedway/components/speedway/speedway.compo
 import { LoginComponent } from './login/components/login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: LoginComponent },
+  { path: 'login', component: LoginComponent },
   { path: 'users', component: UserComponent },
   { path: 'country', component: CountryComponent },
   { path: 'speedway', component: SpeedwayComponent },
-  { path: 'login', component: LoginComponent }
 
 ];
 
