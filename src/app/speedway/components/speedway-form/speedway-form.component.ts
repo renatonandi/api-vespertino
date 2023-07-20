@@ -9,20 +9,19 @@ import { CountryService } from 'src/app/country/services/country.service';
   templateUrl: './speedway-form.component.html',
   styleUrls: ['./speedway-form.component.scss']
 })
-export class SpeedwayFormComponent implements OnInit{
-  constructor(private service: SpeedwayService, private countryService: CountryService) {}
+export class SpeedwayFormComponent implements OnInit {
+  constructor(private service: SpeedwayService, private countryService: CountryService) { }
+  public busca: boolean = false;
 
   public countries!: Country[];
+  public country: Country = {} as Country;
 
   public speedways!: Speedway[];
-
-  public country = {} as Country;
-
-  public speedway = {} as Speedway;
+  public speedway: Speedway = {} as Speedway;
 
   public cancel: boolean = false;
 
-  public buttonCancel(){
+  public buttonCancel() {
     if (this.speedway.name == '' || this.speedway.size == null) {
       return true
     }
@@ -30,19 +29,22 @@ export class SpeedwayFormComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    
     this.countryService.listAll().subscribe((data) => {
       this.countries = data;
     });
 
     this.service.emitEvent.subscribe({
-      next: (res: any) => {
+      next: (res: Speedway) => {
         this.speedway = res;
-
+        let country = this.countries.find((country) => this.speedway.country.id === country.id )
+        if(country !== undefined){
+          this.speedway.country = country;
+        }
       },
     });
+
   }
-  
+
   public getSpeedwayByName() {
     this.service.getSpeedwayByName(this.speedway.name).subscribe((data) => {
       this.speedways = data;
@@ -53,16 +55,17 @@ export class SpeedwayFormComponent implements OnInit{
     this.speedway = {} as Speedway;
   }
 
-  public saveSpeedway(){
-    if(this.speedway.id){
+  public saveSpeedway() {
+    if (this.speedway.id) {
       this.service.update(this.speedway).subscribe((data) => {
         this.speedway = {} as Speedway;
       })
-    }else{
+    } else {
       this.service.insert(this.speedway).subscribe((data) => {
         this.speedway = {} as Speedway;
       })
     }
   }
+
 
 }

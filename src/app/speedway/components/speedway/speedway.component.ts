@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { SpeedwayService } from '../../services/speedway.service';
 
 @Component({
   selector: 'app-speedway',
@@ -6,5 +7,13 @@ import { Component } from '@angular/core';
   styleUrls: ['./speedway.component.scss']
 })
 export class SpeedwayComponent {
+  public botao: boolean = false;
+
+constructor(private service: SpeedwayService) { }
+
+public botaoBusca(){
+  this.botao = !this.botao;
+  this.service.botaoBusca();
+}
 
 }

@@ -11,8 +11,6 @@ import { Country } from 'src/app/country/models/country';
 export class SpeedwayTableComponent implements OnInit{
   constructor(private service: SpeedwayService) { }
 
-  public country!: Country[];
-  
   public speedways!: Speedway[];
 
   
@@ -22,15 +20,9 @@ export class SpeedwayTableComponent implements OnInit{
     });
   }
 
-  public editaSpeedway(speedway:Speedway){
-    let speedwayCountry = {
-      id: speedway.id,
-      name: speedway.name,
-      size: speedway.size,
-      country: speedway.country
-    }
-
-    this.service.speedwaySelect(speedwayCountry);
+  public editaSpeedway(speedway: Speedway){
+    const newSpeedway: Speedway = { ...speedway };
+    this.service.speedwaySelect(newSpeedway);
   }
 
   public delete(speedway: Speedway){

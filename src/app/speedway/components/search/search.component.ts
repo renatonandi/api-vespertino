@@ -13,21 +13,20 @@ export class SearchComponent {
   constructor(private service: SpeedwayService, private countryService: CountryService) {}
 
   public countries!: Country[];
-
-  public country = {} as Country;
+  public country: Country = {} as Country;
 
   public speedways!: Speedway[];
-
-  public speedway = {} as Speedway;
+  public speedway: Speedway = {} as Speedway;
 
   ngOnInit(): void {
-    this.service.emitEvent.subscribe({
-      next: (res: any) => {
-        this.speedway = res[0];
-      },
-    });
     this.countryService.listAll().subscribe((data) => {
       this.countries = data;
+    });
+    
+    this.service.emitEvent.subscribe({
+      next: (res: Speedway) => {
+        this.speedway = res;
+      },
     });
   }
 

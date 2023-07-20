@@ -9,8 +9,11 @@ import { Country } from 'src/app/country/models/country';
 })
 export class SpeedwayService {
   constructor(private http: HttpClient) {}
+  public busca: boolean = false;
 
   public emitEvent = new EventEmitter();
+
+  public eventoBotao = new EventEmitter();
 
   private urlBase: string = `http://localhost:8080/pista`;
   private speedwaySubject = new Subject<Speedway[]>();
@@ -18,6 +21,18 @@ export class SpeedwayService {
   private httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
+
+  public botaoBusca(){
+    this.busca = !this.busca;
+    this.eventoBotao.emit(this.busca);
+  }
+  
+  public listAll(): Observable<Speedway[]> {
+    this.http
+      .get<Speedway[]>(this.urlBase)
+      .subscribe((speedways) => this.speedwaySubject.next(speedways));
+    return this.speedwaySubject.asObservable();
+  }
 
   public insert(speedway: Speedway): Observable<Speedway> {
     return this.http
@@ -47,15 +62,10 @@ export class SpeedwayService {
     return this.http.delete<void>(`${this.urlBase}/${speedway.id}`);
   }
 
-  public listAll(): Observable<Speedway[]> {
-    this.http
-      .get<Speedway[]>(this.urlBase)
-      .subscribe((speedways) => this.speedwaySubject.next(speedways));
-    return this.speedwaySubject.asObservable();
-  }
+  
 
   public getSpeedwayByName(name: string): Observable<Speedway[]> {
-    if (name == '') {
+    if (name === '') {
       this.listAll();
     } else {
       this.http
@@ -70,13 +80,11 @@ export class SpeedwayService {
   }
 
   public getSpeedwayByCountry(country: Country): Observable<Speedway[]> {
-    if (country.name === undefined) {
-      this.listAll();
-    }else{
+    
       this.http
         .get<Speedway[]>(`${this.urlBase}/pais/${country.id}`)
         .subscribe((speedways) => this.speedwaySubject.next(speedways));
-    }
+    
     return this.speedwaySubject.asObservable();
   }
 }
