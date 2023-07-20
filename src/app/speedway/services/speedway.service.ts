@@ -80,11 +80,16 @@ export class SpeedwayService {
   }
 
   public getSpeedwayByCountry(country: Country): Observable<Speedway[]> {
-    
       this.http
         .get<Speedway[]>(`${this.urlBase}/pais/${country.id}`)
         .subscribe((speedways) => this.speedwaySubject.next(speedways));
     
     return this.speedwaySubject.asObservable();
   }
+
+  public getSpeedwaySizeBetween(sizeI: number, sizeF: number){
+    this.http.get<Speedway[]>(`${this.urlBase}/size/${sizeI}/${sizeF}`).subscribe((speedways) => this.speedwaySubject.next(speedways));
+    return this.speedwaySubject.asObservable();
+  }
+
 }

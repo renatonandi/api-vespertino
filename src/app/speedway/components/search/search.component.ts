@@ -7,10 +7,16 @@ import { CountryService } from 'src/app/country/services/country.service';
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
 export class SearchComponent {
-  constructor(private service: SpeedwayService, private countryService: CountryService) {}
+  constructor(
+    private service: SpeedwayService,
+    private countryService: CountryService
+  ) {}
+
+  public sizeI!: number;
+  public sizeF!: number;
 
   public countries!: Country[];
   public country: Country = {} as Country;
@@ -22,29 +28,31 @@ export class SearchComponent {
     this.countryService.listAll().subscribe((data) => {
       this.countries = data;
     });
-    
-    this.service.emitEvent.subscribe({
-      next: (res: Speedway) => {
-        this.speedway = res;
-      },
-    });
   }
 
   public getSpeedwayByName() {
     this.service.getSpeedwayByName(this.speedway.name).subscribe((data) => {
       this.speedways = data;
-    })
+    });
   }
 
-  public getSpeedwayByCountry(country: Country){
+  public getSpeedwayByCountry(country: Country) {
     this.service.getSpeedwayByCountry(country).subscribe((data) => {
       this.speedways = data;
-    })
+    });
   }
 
-  public cancela(){
+  public cancela(form: any) {
     this.speedway = {} as Speedway;
-    this.getSpeedwayByCountry(this.country)
+    form.reset();
+    this.service.listAll();
   }
 
+  public getSpeedwayBySize() {
+    this.service
+      .getSpeedwaySizeBetween(this.sizeI, this.sizeF)
+      .subscribe((data) => {
+        this.speedways = data;
+      });
+  }
 }

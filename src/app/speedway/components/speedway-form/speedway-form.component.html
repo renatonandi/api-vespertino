@@ -1,44 +1,51 @@
-<form action="" class="form" #form>
-  
-  <div class="search">
-  <h1>Cadastro de Pistas</h1>
-    <button class="button" type="button" >Buscar</button>
-  </div>
-  
-  <div>
-    <label for="nome" class="text-input"
-      >Nome
-      <div class="row">
-        <input type="text" name="name" id="name" [(ngModel)]="speedway.name" />
-      </div>
-    </label>
+<section class="section">
+  <form action="" class="form" #form>
+    <div class="search">
+      <h1>Cadastro de Pistas</h1>
+      <button class="button" type="button" (click)="buscar()">Buscar</button>
+    </div>
 
-    <label for="size" class="text-input"
-      >Tamanho
-      <input type="text" name="size" id="size" [(ngModel)]="speedway.size"
-    /></label>
+    <div>
+      <label for="nome" class="text-input"
+        >Nome
+        <div class="row">
+          <input
+            type="text"
+            name="name"
+            id="name"
+            [(ngModel)]="speedway.name"
+          />
+        </div>
+      </label>
 
-    <label for="country">Países</label>
+      <label for="size" class="text-input"
+        >Tamanho
+        <input type="text" name="size" id="size" [(ngModel)]="speedway.size"
+      /></label>
 
-    <select name="country" id="country" [(ngModel)]="speedway.country">
-      <option value="" selected disabled>Países</option>
-      <option *ngFor="let country of countries" [ngValue]="country">
-        {{ country.name }}
-      </option>
-    </select>
-  </div>
- 
-  <div>
-    <button class="button" type="button" (click)="saveSpeedway()">
-      Salvar
-    </button>
-    <button
-      *ngIf="!buttonCancel()"
-      class="button"
-      type="button"
-      (click)="cancela()"
-    >
-      Cancelar
-    </button>
-  </div>
-</form>
+      <label for="country">Países</label>
+
+      <select name="country" id="country" [(ngModel)]="speedway.country">
+        <option value="" selected disabled>Países</option>
+        <option *ngFor="let country of countries" [ngValue]="country">
+          {{ country.name }}
+        </option>
+      </select>
+    </div>
+
+    <div>
+      <button class="button" type="button" (click)="saveSpeedway()">
+        Salvar
+      </button>
+      <button
+        *ngIf="!buttonCancel()"
+        class="button"
+        type="button"
+        (click)="cancela()"
+      >
+        Cancelar
+      </button>
+    </div>
+  </form>
+  <app-search *ngIf="buscar()"></app-search>
+</section>

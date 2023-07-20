@@ -8,15 +8,15 @@
     <label for="size" class="text-input"
       >Tamanho
       <div class="row">
-        <input type="text" name="size-beggin" id="size-beggin" /> /
-        <input type="text" name="size-end" id="size-end" />
+        <input type="text" name="size-beggin" id="size-beggin" [(ngModel)]="sizeI" (keyup)="getSpeedwayBySize()"/> /
+        <input type="text" name="size-end" id="size-end" [(ngModel)]="sizeF" (keyup)="getSpeedwayBySize()"/>
       </div>
     </label>
 
     <label for="country">Países</label>
 
     <select name="country" id="country" (change)="getSpeedwayByCountry(speedway.country)" [(ngModel)]="speedway.country">
-      <option value="" selected disabled [ngValue]="">Países</option>
+      <option value="" selected disabled [ngValue]="undefined">Países</option>
       <option *ngFor="let country of countries" [ngValue]="country">
         {{ country.name }}
       </option>
@@ -24,7 +24,7 @@
     
   </div>
   <div>
-    <button class="button" type="button" (click)="cancela()">Cancelar</button>
+    <button class="button" type="button" (click)="cancela(form)">Cancelar</button>
 
     <div></div>
   </div>

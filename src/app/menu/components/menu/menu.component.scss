@@ -27,6 +27,7 @@ a:active {
     border-radius: 0px 20px 20px 0px;
     left: -150px;
     transition: 0.5s;
+    top: 30px;
 }
 
 .titulo {
@@ -54,6 +55,7 @@ input:checked {
     background-color: #001458;
     transition: 0.5s;
     cursor: pointer;
+    position: fixed;
 }
 
 .checkbox:checked {

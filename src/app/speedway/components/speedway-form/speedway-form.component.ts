@@ -28,6 +28,10 @@ export class SpeedwayFormComponent implements OnInit {
     return false
   }
 
+  public buscar(){
+    return this.busca = !this.busca;
+  }
+
   ngOnInit(): void {
     this.countryService.listAll().subscribe((data) => {
       this.countries = data;

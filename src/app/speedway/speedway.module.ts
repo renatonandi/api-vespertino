@@ -18,6 +18,9 @@ import { SearchComponent } from './components/search/search.component';
   imports: [
     CommonModule,
     FormsModule
+  ],
+  exports:[
+    SpeedwayComponent
   ]
 })
 export class SpeedwayModule { }

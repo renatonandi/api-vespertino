@@ -10,6 +10,7 @@ import { UserModule } from './user/user.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CountryModule } from './country/country.module';
 import { SpeedwayModule } from './speedway/speedway.module';
+import { LoginModule } from './login/login.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,7 +23,8 @@ import { SpeedwayModule } from './speedway/speedway.module';
     MenuModule,
     UserModule,
     CountryModule,
-    SpeedwayModule
+    SpeedwayModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent],

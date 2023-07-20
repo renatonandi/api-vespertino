@@ -16,6 +16,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule
+  ],
+  exports: [
+    CountryComponent
   ]
 })
 export class CountryModule { }
